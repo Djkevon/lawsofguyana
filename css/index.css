@@ -1,0 +1,360 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        html, body {
+            height: 100%;
+            background: #f0f4fa;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            width: 100%;
+            padding: 16px 20px 20px;
+            max-width: 100%;
+            margin: 0 auto;
+            transition: padding 0.2s;
+        }
+
+        /* header / search area — visible only in list mode */
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            gap: 12px;
+            transition: opacity 0.2s, visibility 0.2s;
+        }
+
+        .header.hidden {
+            display: none;
+        }
+
+        .search-wrapper {
+            flex: 1 1 280px;
+            min-width: 200px;
+            position: relative;
+        }
+
+        .search-wrapper i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #5f7a96;
+            font-size: 1rem;
+            pointer-events: none;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 14px 20px 14px 48px;
+            border: 1px solid #cfddee;
+            border-radius: 40px;
+            font-size: 1rem;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 20, 40, 0.04);
+            transition: all 0.15s;
+            outline: none;
+        }
+
+        #searchInput:focus {
+            border-color: #1e6f9f;
+            box-shadow: 0 6px 16px rgba(30, 111, 159, 0.12);
+        }
+
+
+        .back-bar {
+            display: none;
+            margin-bottom: 14px;
+        }
+
+        .back-bar.visible {
+            display: block;
+        }
+
+        .btn-back {
+            background: white;
+            border: 1px solid #cbdae9;
+            border-radius: 40px;
+            padding: 10px 24px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #1e3a5f;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            transition: all 0.15s;
+        }
+
+        .btn-back:hover {
+            background: #e9f0fa;
+            border-color: #1e6f9f;
+        }
+
+        /* ----- list container ----- */
+        .list-container {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 28px rgba(0, 20, 40, 0.06);
+            overflow: hidden;
+            flex: 1;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.1s;
+        }
+
+        .list-header {
+            padding: 16px 24px;
+            background: #ffffff;
+            border-bottom: 1px solid #e9eef3;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #4a5e72;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .list-header span:first-child i {
+            margin-right: 6px;
+            color: #1e6f9f;
+        }
+
+        .list-scroll {
+            overflow-y: auto;
+            flex: 1;
+            padding: 6px 0;
+        }
+
+   
+        .law-item {
+            padding: 16px 24px;
+            border-bottom: 1px solid #eef3fa;
+            font-size: 1.05rem;
+            color: #0b2b4a;
+            cursor: pointer;
+            transition: background 0.1s;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            line-height: 1.4;
+        }
+
+        .law-item i {
+            color: #1e6f9f;
+            font-size: 1.2rem;
+            opacity: 0.85;
+            width: 22px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .law-item:hover {
+            background: #f3f9ff;
+        }
+
+        .law-item:active {
+            background: #e4effc;
+        }
+
+        .no-results {
+            padding: 60px 20px;
+            text-align: center;
+            color: #6b7c8e;
+            font-size: 1rem;
+            display: none;
+        }
+
+        .no-results i {
+            font-size: 2.4rem;
+            margin-bottom: 16px;
+            opacity: 0.35;
+        }
+
+ 
+        .pdf-viewer {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 28px rgba(0, 20, 40, 0.06);
+            overflow: hidden;
+            flex: 1;
+            display: none;
+            flex-direction: column;
+            min-height: 400px;
+        }
+
+        .pdf-viewer.visible {
+            display: flex;
+        }
+
+        .pdf-header {
+            padding: 16px 24px;
+            background: #f9fcff;
+            border-bottom: 1px solid #dde7f0;
+            font-weight: 500;
+            color: #0b2b4a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .pdf-header .title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            word-break: break-word;
+            max-width: 70%;
+        }
+
+        .pdf-header .title i {
+            color: #b22222;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .pdf-header .readonly-badge {
+            background: #e9f0f9;
+            border-radius: 30px;
+            padding: 6px 16px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: #1e4b6e;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #cddbe9;
+            white-space: nowrap;
+        }
+
+        .pdf-header .readonly-badge i {
+            font-size: 0.7rem;
+            color: #1e6f9f;
+        }
+
+        .pdf-frame-container {
+            flex: 1;
+            background: #eef2f7;
+            position: relative;
+            min-height: 400px;
+        }
+
+        .pdf-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            min-height: 400px;
+            pointer-events: auto;
+        }
+
+ 
+        @media (max-width: 700px) {
+            .app-container {
+                padding: 12px 12px 16px;
+            }
+
+            .law-item {
+                font-size: 0.98rem;
+                padding: 14px 16px;
+                gap: 12px;
+            }
+
+            .list-header {
+                padding: 14px 18px;
+            }
+
+            .pdf-header {
+                padding: 14px 16px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .pdf-header .title {
+                max-width: 100%;
+                font-size: 0.95rem;
+            }
+
+            .pdf-header .readonly-badge {
+                align-self: flex-start;
+                font-size: 0.7rem;
+                padding: 4px 12px;
+            }
+
+            .btn-back {
+                padding: 8px 18px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .law-item i {
+                font-size: 1rem;
+                width: 18px;
+            }
+
+            .law-item {
+                font-size: 0.92rem;
+                padding: 12px 14px;
+            }
+
+            #searchInput {
+                padding: 12px 16px 12px 42px;
+                font-size: 0.95rem;
+            }
+
+            .search-wrapper i {
+                left: 14px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-height: 600px) {
+            .list-scroll {
+                max-height: none;
+            }
+
+            .pdf-frame-container {
+                min-height: 300px;
+            }
+        }
+
+     
+        .list-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .list-scroll::-webkit-scrollbar-track {
+            background: #f1f5fa;
+        }
+
+        .list-scroll::-webkit-scrollbar-thumb {
+            background: #b6c9dd;
+            border-radius: 12px;
+        }
+
+        .list-scroll::-webkit-scrollbar-thumb:hover {
+            background: #8fa8c2;
+        }
